@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% block content %}
+    <main>
+        <section class="py-2 text-left container">
+            <h6> Last 30 Day Search by Home Types</h6>
+            <table class="align-center">
+                <tr style=" background: yellow  ">
+                    <td style="border: 3px solid #dddddd">Home Type</td>
+                    <td style="border: 3px solid #dddddd">Search %</td>
+                </tr>
+
+                <tbody>
+                {% for homeType in homeTypeList %}
+                    <tr style=" background: white ">
+                        <td style="border: 3px solid #dddddd">{{ homeType.HomeType }}</td>
+                        <td style="border: 3px solid #dddddd">{{ homeType.Percentage }}%</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="py-2 text-left container">
+            <h6> Last 30 Day Search by Neighborhoods</h6>
+            <table class="align-center">
+                <tr style=" background: yellow  ">
+                    <td style="border: 3px solid #dddddd">Neighborhood</td>
+                    <td style="border: 3px solid #dddddd">Search %</td>
+                </tr>
+
+                <tbody>
+                {% for neighborhoodType in NeighborhoodTypeList %}
+                    <tr style=" background: white ">
+                        <td style="border: 3px solid #dddddd">{{ neighborhoodType.NeighborhoodType }}</td>
+                        <td style="border: 3px solid #dddddd">{{ neighborhoodType.Percentage }}%</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    <section class="py-2 text-left container">
+            <h6> Last 30 Day Search by Price Ranges</h6>
+            <table class="align-center">
+                <tr style=" background: yellow  ">
+                    <td style="border: 3px solid #dddddd">Price Range</td>
+                    <td style="border: 3px solid #dddddd">Search %</td>
+                </tr>
+
+                <tbody>
+                {% for priceRange in PriceRangeList %}
+                    <tr style=" background: white ">
+                        <td style="border: 3px solid #dddddd">{{ priceRange.PriceRangeType }}</td>
+                        <td style="border: 3px solid #dddddd">{{ priceRange.Percentage }}%</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+{% endblock %}

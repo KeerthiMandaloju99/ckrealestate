@@ -1,0 +1,76 @@
+{% extends "main.html" %}
+{% block content %}
+    <main>
+        <section class="py-5 text-center container">
+            <form method="GET" action="{% url 'search_listings' %}">
+                {% csrf_token %}
+                <h3>Search Homes</h3>
+                Select Neighborhood
+                <select name="neighborhoodOption" id="neighborhoodOption">
+                    <option value="Any"><p class="card-text"> Any </p></option>
+                    {% for neighborhood in neighborhoods %}
+                        <option value="{{ neighborhood.Neighborhood_ID }}"><p
+                                class="card-text"> {{ neighborhood.Neighborhood_Name |truncatechars:18 }}</p></option>
+                    {% endfor %}
+                </select>
+                HomeType
+                <select name="homeTypeOption" id="homeTypeOption">
+                    <option value="Any"><p class="card-text"> Any </p></option>
+                    {% for homeType in homeTypes %}
+                        <option value="{{ homeType.Home_Type_ID }}"><p
+                                class="card-text"> {{ homeType.Home_Type_Name |truncatechars:15 }}</p></option>
+                    {% endfor %}
+                </select>
+                PriceRange
+                <select name="priceRangeOption" id="priceRangeOption">
+                    <option value="Any"><p class="card-text"> Any </p></option>
+                    {% for priceRange in priceRanges %}
+                        <option value="{{ priceRange.Price_Range_ID }}">
+                            <p class="card-text"> {{ priceRange.Price_Range |truncatechars:15 }}</p></option>
+                    {% endfor %}
+                </select>
+
+                <input type="submit" value="Submit"/>
+            </form>
+        </section>
+        <section>
+            <div class="album py-5 bg-body-tertiary">
+                <div class="container">
+
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        {% for listing in listings %}
+                            <div class="col">
+
+                                <div class="card shadow-sm">
+                                    <!-- Product image-->
+                                   <a href="detail_listings?id={{ listing.Listing_ID}}">  <img class="card-img-top" height="225"
+                                             src="{{ listing.first_image.Property_Image.url }}"
+                                             alt="..."/>
+                                       </a>
+                                    <!-- Product details-->
+                                    <div class="card-body">
+                                        {% if listing.Is_Featured_Property %}
+                                            <div class="text-right fw-bolder" style="color: gold">Featured</div>
+                                        {% endif %}
+                                        <div class="text-center">
+                                            <!-- Product name-->
+                                            <h5 class="fw-bolder">{{ listing.Listing_Name | truncatechars:30 }}</h5>
+                                            <!-- Product price-->
+                                            {{ listing.Event_Price }}
+                                        </div>
+                                        <p class="card-text">{{ listing.Listing_Desc |truncatechars:100 }}</p>
+                                        <p class="card-text">{{ listing.Listing_Address |truncatechars:100 }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            Beds: {{ listing.Beds }} Bath:{{ listing.Bath }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

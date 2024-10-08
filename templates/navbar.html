@@ -1,0 +1,59 @@
+     <!-- Responsive navbar-->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <svg class="bi bi-house-heart-fill" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-house-heart-fill"" viewBox="0 0 16 16">
+                <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.707L8 2.207 1.354 8.853a.5.5 0 1 1-.708-.707z"/>
+                <path d="m14 9.293-6-6-6 6V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5zm-6-.811c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018"/>
+              </svg>
+            </a>
+            <a class="navbar-brand" href="{% url 'realestate' %}">CK Real Estate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% with request.resolver_match.url_name as url_name %}
+                <ul class="navbar-nav ms-auto mb-2 mt-2 mb-lg-0 fs-5">
+                    <li class="nav-item">
+                        <a class="nav-link {% if url_name == 'agent_profile' %}active{% endif %}"
+                        href="{% url 'agent_profile' %}">Bio</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if url_name == 'realestate' %}active{% endif %}"
+                         href="{% url 'realestate' %}">Properties</a>
+                    <li class="nav-item">
+                        <a class="nav-link {% if url_name == 'events' %}active{% endif %}"
+                        href="{% url 'events' %}">Events</a>
+                    </li>
+                     {% if user.is_authenticated %}
+                         <li class="nav-item">
+                            <a class="nav-link {% if url_name == 'reports' %}active{% endif %}"
+                        href="{% url 'reports' %}">Monthly-Report</a>
+                    </li>
+                     {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if url_name == 'login' %}active{% endif %}"
+                        href="{% url 'logout' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-fill-x mb-2" viewBox="0 0 16 16">
+                            <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708"/>
+                        </svg>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if url_name == 'login' %}active{% endif %}"
+                        href="{% url 'login' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="gray" class="bi bi-person-fill mb-2" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                          </svg>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endwith %}
+                <form class="d-flex" role="search">
+
+                    <!--button class="btn btn-outline-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Search</button-->
+                </form>
+            </div>
+        </div>
+    </nav>

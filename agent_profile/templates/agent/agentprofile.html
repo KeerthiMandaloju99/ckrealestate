@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% block content %}
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">{{ agent.first_name }} {{ agent.last_name }}</h1>
+        <p class="lead text-body-secondary">Broker: {{ agent.broker }}</p>
+        <p class="lead text-body-secondary">Company: {{ agent.company }}</p>
+        <p class="lead text-body-secondary">Contact Information: {{ agent.phone_number }}</p>
+        <p class="lead text-body-secondary">Email: {{ agent.email }}</p>
+        <p class="lead text-body-secondary">Office Address: {{ agent.office_address }}, {{ agent.city }}, {{ agent.state }}, {{ agent.zip }}</p>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+

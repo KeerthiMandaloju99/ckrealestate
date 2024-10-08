@@ -1,0 +1,56 @@
+{% extends 'main.html' %} 
+{% block content%}     
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Events</h1>
+        <p class="lead text-body-secondary">Explore the local area and see what Omaha has to offer.</p>
+        <p>
+          <a href="{% url 'sort_events' activityOption='Omaha Events' %}" class="btn btn-primary my-2">Omaha Events</a>
+          <a href="{% url 'sort_events' activityOption='Festival' %}" class="btn btn-primary my-2">Festival</a>
+          <a href="{% url 'sort_events' activityOption='Family activity' %}" class="btn btn-primary my-2">Family Activities</a>
+          <a href="{% url 'sort_events' activityOption='Great food' %}" class="btn btn-primary my-2">Great food</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for event in myEvents  %}
+        <div class="col">
+         
+          <div class="card shadow-sm">
+            <!-- Product image-->
+            <img class="card-img-top" height="225" src="{{event.Event_Image.url}}" alt="..." />
+            <!-- Product details-->
+            <div class="card-body">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">{{event.Event_Name | truncatechars:30}}</h5>
+                <!-- Product price-->
+                {{event.Event_Price}}
+            </div>
+              <p class="card-text">{{event.Event_Desc |truncatechars:100 }}</p>
+              <p class="card-text">{{event.Event_Address |truncatechars:100 }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                
+                <small class="text-body-secondary">{{event.Event_Start_Date}}</small>
+                <small class="text-body-secondary">{{event.Event_End_Date}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+  </section>
+</main>
+{% endblock %}

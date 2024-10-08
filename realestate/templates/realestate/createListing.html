@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block content %}
+<h2> Create a new Property Listing</h2>
+
+
+<form action="createListing/" method="post">
+    {% csrf_token %}
+    Name: <input name="Name">
+    Desc: <input name="Desc">
+    <input type="submit" value="create">
+</form>
+{% endblock %}

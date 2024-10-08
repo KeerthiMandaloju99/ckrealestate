@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+{% block content %}
+<h2> Update a new Property Listing</h2>
+
+
+<form action="updateListing/{{property.id}}" method="post">
+    {% csrf_token %}
+    Name: <input name="Name" value="{{property.Name}}">
+    Desc: <input name="Desc" value="{{property.Desc}}">
+    <input type="submit" value="update">
+
+</form>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+    <main>
+        <section>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" >
+                <div class="carousel-inner" style="display: flex">
+                    {% for image in listing.get_images %}
+                    <div  id="slide{{ forloop.counter }}" >
+                        <img src="{{ image.Property_Image.url }}" style="width: 300px; height: 150px;padding-right: 20px;">
+                    </div>
+                {% endfor %}
+                </div>
+              </div>
+            <div class="album py-5 bg-body-tertiary">
+                <div class="container">
+                    
+                    <div class="row">
+                        
+                        <div class="col">
+                            
+                           <div class="card shadow-sm">
+                                <!-- Product image-->
+                                <!-- {% for image in listing.get_images %}
+                                    <img class="card-img-top" height="225"
+                                         src="{{ image.Property_Image.url }}"
+                                         alt="..."/>
+                                {% endfor %} -->
+                                <!-- Product details-->
+                                <div class="card-body">
+                                    {% if listing.Is_Featured_Property %}
+                                        <div class="text-right fw-bolder" style="color: gold">Featured</div>
+                                    {% endif %}
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h3 class="fw-bolder">{{ listing.Listing_Name | truncatechars:30 }}</h3>
+                                        <!-- Product price-->
+                                        {{ listing.Event_Price }}
+                                    </div>
+                                    <p class="card-text"><b>Description: </b>{{ listing.Listing_Desc |truncatechars:100 }}</p>
+                                    <p class="card-text"><b>Address: </b> {{ listing.Listing_Address |truncatechars:100 }}</p>
+                                    <p class="card-text"><b> Price: </b>{{ listing.Price |truncatechars:100 }}</p>
+                                    <p class="card-text">
+                                        <b> Neigborhood: </b>{{ listing.Listing_Neighborhood |truncatechars:100 }}</p>
+                                    <p class="card-text"><b>Home
+                                        Type: </b>{{ listing.Listing_Home_Type |truncatechars:100 }}</p>
+                                    <div class="d-flex">
+                                        <b>Details: &nbsp;</b> {{ listing.Beds }} Beds {{ listing.Bath }} Bath
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,1 @@
+web: gunicorn ckrealestate.wsgi --log-file -
